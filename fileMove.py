@@ -28,14 +28,14 @@ class MyHandler(FileSystemEventHandler):
                 os.rename(src, new_destination)
 
 
-    
-folder_to_track = '/Users/vaishak-5510/Downloads'
-misc_destination = '/Users/vaishak-5510/Downloads/misc'
-song_destination = '/Users/vaishak-5510/Downloads/songs'
-video_destination = '/Users/vaishak-5510/Downloads/video'
-image_destination = '/Users/vaishak-5510/Downloads/image'
-doc_destination = '/Users/vaishak-5510/Downloads/docs'
-zip_destination = '/Users/vaishak-5510/Downloads/zip'
+# Modify the folder path accordingly
+folder_to_track = 'path-to-Downloads'
+misc_destination = 'path-to-Downloads/misc'
+song_destination = 'path-to-Downloads/songs'
+video_destination = 'path-to-Downloads/video'
+image_destination = 'path-to-Downloads/image'
+doc_destination = 'path-to-Downloads/docs'
+zip_destination = 'path-to-Downloads/zip'
 
 imageExtensions = ['jpg', 'png', 'jpeg', 'gif', 'tif']
 videoExtensions = ['mp4', 'avi', 'mov', 'wmv', 'flv', '3gp']
