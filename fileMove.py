@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from watchdog.observers import Observer #pip install watchdog for this to work.
 import time
 from watchdog.events import FileSystemEventHandler
