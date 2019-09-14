@@ -11,26 +11,38 @@ class MyHandler(FileSystemEventHandler):
             # print(ext)
             if len(ext) > 1:
                 fileExt = ext[len(ext) - 1]
-                new_destination = misc_destination + "/" + filename     #default folder for files that dont fit into any category.
-
+                new_destination = misc_destination    #default folder for files that dont fit into any category.
+                i = 1
                 src = folder_to_track + "/" + filename
                 if fileExt in imageExtensions:
-                    new_destination = image_destination + "/" + filename
+                    new_destination = image_destination
                 elif fileExt in videoExtensions:
-                    new_destination = video_destination + "/" + filename
+                    new_destination = video_destination
                 elif fileExt in songExtensions:
-                    new_destination = song_destination + "/" + filename
+                    new_destination = song_destination
                 elif fileExt in docExtensions:
-                    new_destination = doc_destination + "/" + filename
+                    new_destination = doc_destination
                 elif fileExt in zipExtensions:
-                    new_destination = zip_destination + "/" + filename
+                    new_destination = zip_destination
 
-                os.rename(src, new_destination)
+                new_name = filename
+                file_exists = os.path.isfile(new_destination + '/' + new_name)
+                while(file_exists):
+                    i+=1
+                    new_name = os.path.splitext(folder_to_track + '/' + filename)[0] + str(i) + os.path.splitext(folder_to_track + '/' + filename)[1]
+                    # based on the number of '/' present in the folder to track modify the number inside the bracket.
+                    # for example here i have used the path [/Users/vaishak/Downloads] -> three backslashes so (3+1) inside the bracket
+                    new_name = new_name.split("/")[4]
+                    file_exists = os.path.isfile(new_destination + "/" + new_name)
+                    
+
+                new_name = new_destination + "/" + new_name
+                os.rename(src, new_name)
 
 
 # Modify the folder path accordingly
 folder_to_track = 'path-to-Downloads'
-misc_destination = 'path-to-Downloads/misc'
+misc_destination = 'path-to-Downloads/uncategorised'
 song_destination = 'path-to-Downloads/songs'
 video_destination = 'path-to-Downloads/video'
 image_destination = 'path-to-Downloads/image'
